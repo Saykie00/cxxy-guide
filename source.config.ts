@@ -5,7 +5,6 @@ import {
   frontmatterSchema,
   metaSchema,
 } from "fumadocs-mdx/config";
-import { transformerTwoslash } from "fumadocs-twoslash";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
 import lastModified from "fumadocs-mdx/plugins/last-modified";
@@ -37,9 +36,9 @@ export default defineConfig({
         light: "github-light",
         dark: "github-dark",
       },
+      // The current fumadocs-twoslash release depends on a TypeScript 5/6-only runtime.
       transformers: [
         ...(rehypeCodeDefaultOptions.transformers ?? []),
-        transformerTwoslash(),
       ],
     },
     remarkCodeTabOptions: {
