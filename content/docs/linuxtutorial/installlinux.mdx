@@ -1,0 +1,99 @@
+---
+title: Linux的简要安装教程
+description: "请不要疏忽哦"
+---
+
+import { ClosedCaption } from "lucide-react";
+
+<p className="flex flex-wrap break-words gap-2 text-sm text-gray-500"><ClosedCaption className="size-5" /> 该节由 [**未至**](https://github.com/Saykie00) 编写</p>
+
+既然是关于Linux，那么在一个真正的Linux系统上学习就显得尤为重要了，毕竟实践出真知，不自己亲手玩两下Linux，怎么知道Linux怎么用呢？
+这里就是关于“如何安装一个Linux系统”的简便教学。
+以及，此处仅作概括。<s>免责声明（确信）</s>
+如果要安装Arch Linux的话，请右转[archlinux 简明指南](https://arch.icekylin.online/)查看更加详细的安装教程
+
+PS：安装前须知，Linux的内核是放在EFI分区的，如果需要，在安装双系统之前，记得备份EFI分区文件，然后扩容EFI分区（此处建议设置为2G），这样方便后续操作
+<s>你也不想后续因为EFI分区容量不够而出现神秘问题吧</s>
+
+
+#### 下载安装镜像
+
+在正式的将系统装入你的物理机之前，安装镜像是十分重要的阶段。  
+我们一般意义上的“重装系统”，无论是安装 Windows、Linux、黑苹果、macOS，其实都有一个共同的特点：它们通常都是通过一个镜像文件（ISO / IMG）来启动并完成的。而这个镜像文件被写入 U 盘后，就形成了我们常说的“系统安装盘”或“系统 U 盘”。  
+
+安装镜像环境简单来说就是将一个小的系统加载到内存之中，系统是运行在内存之上的。电脑实际上是在运行内存里的这个系统，而不是硬盘上原本的系统。  
+
+我们物理机安装 Linux 也完全遵循这个逻辑。当你插入制作好的 Linux 系统 U 盘并启动后，首先进入的就是这个 Live 环境。在这个环境中将真正的
+系统文件从 U 盘里完整地部署到你的物理硬盘上。  
+
+以下为推荐的Linux发行版镜像，点击跳转到下载页面,一般来说选择x86_64版本的iso镜像即可  
+
+[Linux Mint](https://linuxmint.com/download.php)  
+[Arch Linux](https://mirrors.aliyun.com/archlinux/iso/2026.09.01/)  
+[Fedora Workstation](https://fedoraproject.org/workstation/download/)  
+
+在完成将系统安装进物理机后，就可以将U盘拔掉，关机，开机。然后就可以进入系统了。  
+
+#### 虚拟机安装（VirtualBox / VMware/WSL）
+
+###### WSL安装
+
+**WSL**（Windows Subsystem for Linux，适用于 Linux 的 Windows 子系统）是微软为 Windows 10 和 Windows 11 开发的一项强大功能。它的核心目的是让开发者能够直接在 Windows 上运行原生的 Linux 环境，而无需承担传统虚拟机（如 VMware、VirtualBox）的庞大资源开销，也无需进行复杂的双系统启动配置。  
+
+**最简单明了的步骤**
+
+[如何使用 WSL 在 Windows 上安装 Linux](https://learn.microsoft.com/zh-cn/windows/wsl/install)  
+
+##### VMware/VirtualBox
+
+与前文提到的 WSL 不同，VMware 和 VirtualBox 属于传统的**虚拟机软件**（Type 2 Hypervisor）。它们的工作原理是在你现有的操作系统（宿主机）之上，通过软件模拟出一整套完整的虚拟硬件（包括虚拟的 CPU、内存、硬盘、网卡等）。你可以在这些虚拟硬件上，像给一台真实的电脑装机一样，去安装和运行另一个完全独立的操作系统（客户机）。  
+
+###### Arch Linux安装
+
+前略，首先我们要准备关于ArchLinux的完整镜像  
+
+前往[Arch Linux](https://mirrors.edge.kernel.org/archlinux/iso/latest) 的镜像站  
+下载最新的镜像文件(.iso)  
+
+准备好镜像文件后，我们要在VMware/VirtualBox上创建虚拟机  
+创建虚拟机  
+类型：Linux/Arch Linux (64-bit)  
+内存：2GB以上  
+引导模式：最好开启EFI（UEFI）支持，因为现在的大部分电脑都是此引导方式，更符合现代的标准  
+
+好的可以选择iso镜像后进入安装环境里  
+
+不过这里有两种安装方式  
+
+
+A. 使用Archinstall脚本（推荐）  
+官方镜像源自带了一个自动化的脚本，使用这个可以有图形化界面像window安装一般的简单的安装Arch Linux，首先在
+
+`archintall`
+
+然后图形界面可以代替教程了，不过还有几点需要提到  
+1.Disk configuration:这个是对你给Archlinux分的硬盘空间进行分区，建议选择Desktop-specific配置  
+2.Profile:这里可以选择桌面环境，比如安装GNOME,KDE Plasma或者Xfce  
+3.Network configuration：选择Copy ISO network configuration  
+最后点击install,几分钟后会自动重启进入桌面  
+
+B.手动安装（不推荐）  
+请直接参考[archlinux 简明指南](https://arch.icekylin.online)。  
+<s><i>这是我能做到的最不会误导你的事情了</i></s>  
+以及反复确保安装时各个目录是否挂载正确  
+
+###### Fedora Workstation 安装
+
+进入Live CD后，直接按照指引安装即可，十分的简洁和方便
+
+#### 物理机安装
+
+###### Arch Linux安装
+
+建议你直接去[archlinux 简明指南](https://arch.icekylin.online/)，按照步骤来进行，因为我做的再详细也没有[archlinux 简明指南](https://arch.icekylin.online/)详细  
+如果可以，请在虚拟机完整的走完了一遍安装流程后在进行物理机上的安装。  
+~~还有最重要的一点，不要再晚上搞电脑/刷机~~  
+
+###### Fedora Workstation安装
+
+同样进入Live CD环境中，按照指引安装

@@ -6,6 +6,7 @@
     "index",
     "operating_system",
     "basic-linux-concepts",
-    "computer_system_startup_process"
+    "computer_system_startup_process",
+    "installlinux"
   ]
 }
