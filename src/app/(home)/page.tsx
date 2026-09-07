@@ -40,6 +40,13 @@ export default function HomePage() {
         >
           进入数值方法的世界
         </Card>
+        <Card
+          icon={<BookPlus />}
+          title={"Linux简单指南"}
+          href={"/docs/linuxtutorial"}
+        >
+          神秘<s><i>并非</i></s>的Linux
+        </Card>
         <Card icon={<HammerIcon />} title={"其他"} href={"/docs/others"}>
           其他乱七八糟的教程
         </Card>

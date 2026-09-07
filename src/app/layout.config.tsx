@@ -41,6 +41,11 @@ export const baseOptions: BaseLayoutProps = {
           description: "学习 C/C++ 的基础知识",
         },
         {
+          text: "Linux 教程",
+          url: "/docs/linuxtorial",
+          description: "学习 Linux 的一些基本知识",
+        },
+        {
           text: "数值方法",
           url: "/docs/numerical_methods",
           description: "进入数值方法的世界",
