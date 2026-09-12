@@ -1,0 +1,83 @@
+---
+title: 桌面环境，包管理器的基本了解
+description: "TAT"
+---
+
+import { ClosedCaption } from "lucide-react";
+
+<p className="flex flex-wrap break-words gap-2 text-sm text-gray-500"><ClosedCaption className="size-5" /> 该节由 [**未至**](https://github.com/Saykie00) 编写</p>
+
+前文提到过，桌面环境对于电脑的使用是十分重要的  
+总之日常使用是离不开桌面环境的。  
+
+所以就得将一些简单的对于桌面环境的知识告诉你。  
+
+### 图形显示管理器/Display Manager（登录管理器）
+
+电脑开机进入电脑是要经过一个登陆界面的，倘若如果直接就进入桌面环境的话，那么就相当于任何人都可以直接使用电脑了。  
+Display Manager就如同Windows的锁屏界面一般，提供登录验证和桌面环境的选择。  
+
+是的，在Linux上你可以安装多个桌面环境~~*感觉在哪里听过这句话（x*~~，并且可以在登录界面选择你要进入的桌面环境。  
+
+目前主流的Display Manager有以下这些：  
+
+GDM：桌面环境`GNOME`的默认登录管理器，界面现代化，深度集成 GNOME 生态。  
+SDDM：桌面环境`KDE`的默认登录管理器，界面简洁，所以可以方便的通过主题进行美化和定制。  
+LightDM  
+LXDM  
+等等... 
+如果有需要的话，可以自由的选择自己喜欢的Display Manager来使用。
+
+### 包管理器
+
+前文也提到过，实际上是个类似应用商店的存在，所以接下来讲述关于包管理器相关的东西  
+
+首先，包管理器是向服务器发送请求，进而让服务器与电脑传输数据的，但是总是会有很多地区无法连接到某个特定的服务器。  
+为了解决这个问题，镜像源非常顺理成章的被搭建了出来，镜像源将我们难以访问或下载的数据都保存在我们能够正常访问服务器上，于是就解决了因为连接不上而无法升级下载包的难题。  
+
+所以一般来说，我们都要给我们的包管理器配置连接最稳定的镜像源，以获得最好的体验  
+
+不同发行版有不同的包管理器。  
+
+以debian系的apt为例：  
+1.搜索apt的国内镜像源并写下它  
+2.备份原文件：`sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak`  
+3.使用文本编辑器打开文件：`sudo vim /etc/apt/sources.list`  
+4.将国内镜像源的链接放进去，保存退出。再`sudo apt update`  
+
+在其中
+`sudo apt update`  是更新软件包列表  
+`sudo apt upgrade` 是根据新的软件包来升级软件  
+并且参数`search`和`install`在 Arch 系的pacman包管理器之外都基本是通用的  
+例如安装 `fastfetch` 
+在apt中
+```
+sudo apt install fastfetch
+```
+在dnf中
+```
+sudo dnf install fastfetch
+```
+
+Flatpak 是一种跨发行版的软件分发和管理方式，主要用于安装桌面应用。它会将应用运行在相对独立的沙盒环境中，并通过权限机制限制应用对系统资源的访问，因此在安装一些桌面应用时，Flatpak 是一个比较方便的选择。
+
+在我们安装图形界面的应用时，如`Chrome`就可以使用
+`flatpak search chrome`  
+再根据搜索的结果来安装对应的软件  
+`flatpak install com.google.Chrome`
+
+不同 Linux 发行版通常使用不同的软件包格式。例如 Debian 系常见的是 .deb，Red Hat 系常见的是 .rpm。而 apt、dnf 等则是用于管理这些软件包的工具。
+
+以及如果有不想要的软件，删除命令如下：  
+
+```
+sudo apt remove fastfetch
+```
+
+```
+sudo dnf remove fastfetch
+```
+
+```
+flatpak uninstall com.google.Chrome
+```

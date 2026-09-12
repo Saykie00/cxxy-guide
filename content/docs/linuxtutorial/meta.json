@@ -7,6 +7,9 @@
     "operating_system",
     "basic-linux-concepts",
     "computer_system_startup_process",
-    "installlinux"
+    "installlinux",
+    "linux-file-system-directory",
+    "about-terminal",
+    "dm-pm"
   ]
 }
