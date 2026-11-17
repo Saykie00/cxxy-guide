@@ -4,12 +4,19 @@
   "root": true,
   "pages": [
     "index",
-    "operating_system",
-    "basic-linux-concepts",
-    "computer_system_startup_process",
-    "installlinux",
-    "linux-file-system-directory",
-    "about-terminal",
-    "dm-pm"
+    "---电脑！启动！😠---",
+    "poweron/computer_system_startup_process",
+    "---了解操作系统---",
+    "knowLinux/operating_system",
+    "knowLinux/basic-linux-concepts",
+    "knowLinux/linux-file-system-directory",
+    "---安装Linux---",
+    "install/installlinux",
+    "install/installfedora",
+    "---对他使用命令行吧！---",
+    "terminal/about-terminal",
+    "---！？包管理器？！---",
+    "dm-pm",
+    "---没有桌面我用什么？是啊，用什么---"
   ]
 }

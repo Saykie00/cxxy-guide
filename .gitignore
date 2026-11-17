@@ -12,6 +12,8 @@
 /out/
 /build
 *.tsbuildinfo
+.bun.lock
+.package.json
 
 # misc
 .DS_Store

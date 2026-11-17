@@ -1,0 +1,156 @@
+---
+title: Fedora的安装
+description: "安装名为Fedora的发行版"
+---
+
+import { ClosedCaption } from "lucide-react";
+
+<p className="flex flex-wrap break-words gap-2 text-sm text-gray-500"><ClosedCaption className="size-5" /> 该节由 [**未至**](https://github.com/Saykie00) 编写</p>
+
+包括fedora在内的大部分Linux 发行版都已经有了图形化的安装界面，其非常的直观和便捷，但是安装时总是会遇到可能存在的问题。所以在这里也要简要的写一篇安装教程。
+
+PS：安装前须知，Linux的内核是放在EFI分区的，如果需要，在安装双系统之前，记得备份EFI分区文件，然后扩容EFI分区（此处建议设置为2G），这样方便后续操作，以及提前给Linux分好区，预留100g完全足够。
+
+### 安装之前需要了解的关于Fedora的事情！
+
+**如果没有其他的需求，默认选择Fedora Workstation的最新版即可。**  
+
+
+Fedora有很多的分支，不过严格来说是 **四大产品矩阵** （~~因为官方就是这样称呼的~~）
+
+以下  
+
+**Editions**  
+这是 Fedora 的主力旗舰产品。它包含 Workstation、KDE Plasma Desktop、Server、Cloud、CoreOS 和 IoT 这 6 个旗舰版本。  
+
+**Atomic Desktops**  
+这是官方独立出来的不可变桌面产品线，底层基于 rpm-ostree 构建，拥有只读系统分区和原子更新特性。包含 Silverblue、Kinoite、Sway Atomic、Budgie Atomic 和 COSMIC Atomic 这 5 个版本。不可变发行版在概念上来说不适合Linux新人一上来使用，它与传统的发行版并不相同，请谨慎选择。
+
+**Spins**  
+由 Fedora 社区特别兴趣小组（SIG）维护的替代桌面版本。它们与官方版本共享完全相同的底层软件仓库，只是默认预装了不同的桌面环境（如 Xfce、Cinnamon、i3 等）。  
+
+**Labs**  
+同样由社区维护，是在基础桌面之上预先打包了特定垂直领域全套工具的开箱即用镜像（如面向安全审计的 Security Lab、面向科研的 Scientific 等）。 
+
+### 实体机安装之前的准备工作
+
+首先我们需要fedora的安装镜像，这非常简单，点击[这里](https://mirrors.aliyun.com/fedora/releases/45/Workstation/x86_64/iso/?spm=a2c6h.25603864.0.0.76645b9e6h6Xqi)就可以下载镜像了。  
+下载完成之后，制作启动U盘，当然如果你已经制作好了ventoy的系统U盘的话，那么直接将镜像文件拖入即可。  
+
+以及虚拟机安装也是基本一样的步骤，不过不用使用系统U盘。
+
+确保安装时你的电脑关闭了Secure Boot，该选项会限制未经签名的内核被加载，会使得fedora的安装镜像的内核无法被加载，各个品牌的电脑的关闭Secure Boot的方法有所不同，以联想的ThinkPad为例子。  
+
+1. 进入 BIOS 界面：  
+	• 重新启动 ThinkPad，在刚开机出现 Lenovo 或 ThinkPad Logo 界面时，连续敲击键盘上的 F1 键（部分机型需按 Fn + F1）进入 BIOS。  
+2. 找到 Security 选项：  
+	• 使用键盘方向键切换到 Security（安全）菜单。  
+3. 定位 Secure Boot：  
+	• 找到 Secure Boot 选项。  
+	• (注：如果部分新机型或开启了 Device Guard / 设备安全防护导致 Secure Boot 选项呈灰色不可更改，请先在 Security 菜单中找到 Device Guard 或类似的安全选项将其关闭或调整。)  
+4. 修改为关闭状态：  
+	• 将 Secure Boot 的状态从 Enabled（开启）更改为 Disabled（关闭）。  
+5. 保存并退出：  
+	• 按键盘上的 F10 键，选择 Yes 保存设置并重启电脑。  
+
+
+至此准备工作完成  
+
+### 进入安装引导
+
+关闭Secure Boot后，将准备好的系统U盘插入电脑，（以ThinkPad为例）开机亮ThinkPad Loge时按 `F12` 进入启动选项，选择USB启动项。  
+
+进入Ventoy的界面后，通过↑↓箭头选择，选择有Fedora字样的选项。按 `Enter`进入，如果没有意外，那么你将可以看到一些加载画面，然后进入GNOME桌面。  
+
+进入GNOME桌面后，一会就会弹出安装引导界面。按照指引安装，勾选unfree软件安装。  
+
+以及按照你的需求决定你的硬盘该如何分配。  
+
+如果你是希望 Window / Linux 双系统共存，那么选择提前准备好的分区进行安装即可（~~不知道在哪？看开头的PS啦！~~），文件系统ex4,btrfs都可以，个人推荐使用btrfs。  
+
+然后一路点确认后安装即可。  
+
+安装完成后重启，拔掉U盘，在引导选项中选择fedora（随便一个都可以）。  
+
+不过由于某些很神秘的特性 (~~bug~~) 使得屏幕的显示可能会出现问题 （~~大概是英伟达显卡的问题~~），但是一般都有一个fedora的选项可以选择并且不会出现问题。  
+
+如果没有英伟达驱动安装的要求，那么基本安装就到这里结束了。  
+
+### 英伟达显卡驱动安装（可选）
+
+在英伟达官方网站有安装教程，点击[这里](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/latest/fedora.html)就可以阅读。  
+
+以下为详细安装步骤  
+
+
+#### 第一步：启用 RPM Fusion 仓库
+
+打开终端，运行以下命令启用 RPM Fusion 的非自由（nonfree）仓库：  
+```
+sudo dnf install https://rpmfusion.org(rpm -E %fedora).noarch.rpm https://rpmfusion.org(rpm -E %fedora).noarch.rpm
+```
+(如果系统提示已安装，可跳过此步)  
+
+#### 第二步：更新系统软件包
+
+安装驱动前，建议先更新系统以保持内核与开发工具一致：  
+```
+sudo dnf upgrade --refresh
+```
+更新完成后，重启一次电脑确保使用的是最新内核。  
+
+#### 第三步：检查 Secure Boot（安全启动）状态
+
+在终端运行：  
+```
+mokutil --sb-state
+```
+• 如果显示 SecureBoot disabled：直接跳过下一步，进行第四步。  
+• 如果显示 SecureBoot enabled：你需要先为内核模块进行签名，否则安全启动会拒绝加载 NVIDIA 驱动。请按以下步骤操作：  
+	1. 安装签名工具：  
+	```
+	sudo dnf install kmodtool akmods mokutil openssl
+	```
+	2. 生成 MOK 密钥：  
+  ```
+  sudo kmodgenca -a
+  ```
+	3. 导入公钥到系统（此过程会提示你设置一个临时密码，重启时会用到）：  
+	```
+	sudo mokutil --import /etc/pkcs/akmods/certs/public_key.der
+	```
+	4. 重启电脑，在开机弹出的蓝屏 MOK Management 界面中：  
+		• 选择 Enroll MOK -> Continue -> Yes。  
+		• 输入刚才设置的临时密码，确认后选择 reboot 重启系统。  
+
+#### 第四步：安装 NVIDIA 驱动
+
+在终端中运行以下命令安装驱动：  
+```
+sudo dnf install akmod-nvidia
+```
+(可选：如果你需要 CUDA 支持或硬件视频解码组件，可以顺便安装：)  
+```
+sudo dnf install xorg-x11-drv-nvidia-cuda
+```
+
+#### 第五步：耐心等待与重启
+
+1. 安装完成后，切勿立即重启！  
+2. akmod-nvidia 需要在后台花几分钟时间为当前内核编译 NVIDIA 模块。你可以通过以下命令观察编译服务是否结束：  
+```
+modinfo -F version nvidia
+```
+如果能正确输出版本号（或者等待 3~5 分钟），说明编译已完成。  
+3. 编译完成后，重启电脑。  
+
+#### 第六步：验证驱动是否安装成功
+
+重启进入桌面后，打开终端运行：  
+```
+nvidia-smi
+```  
+如果正常打印出你的显卡型号、驱动版本以及 GPU 占用信息，说明 NVIDIA 驱动已成功加载。  
+
+
+如果重启后你的屏幕出现显示异常，那么就要进入到另外一个能够正常显示的选项中删除驱动，并且从新安装一遍。

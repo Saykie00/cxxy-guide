@@ -1,5 +1,5 @@
 ---
-title: Linux的简要安装教程
+title: ArchLinux的简要安装教程
 description: "请不要疏忽哦"
 ---
 
@@ -26,11 +26,7 @@ PS：安装前须知，Linux的内核是放在EFI分区的，如果需要，在�
 我们物理机安装 Linux 也完全遵循这个逻辑。当你插入制作好的 Linux 系统 U 盘并启动后，首先进入的就是这个 Live 环境。在这个环境中将真正的
 系统文件从 U 盘里完整地部署到你的物理硬盘上。  
 
-以下为推荐的Linux发行版镜像，点击跳转到下载页面,一般来说选择x86_64版本的iso镜像即可  
-
-[Linux Mint](https://linuxmint.com/download.php)  
-[Arch Linux](https://mirrors.aliyun.com/archlinux/iso/2026.09.01/)  
-[Fedora Workstation](https://fedoraproject.org/workstation/download/)  
+ArchLinux的国内镜像下载源的安装镜像可以点击[这里](https://mirrors.aliyun.com/archlinux/iso/)寻找最新版下载
 
 在完成将系统安装进物理机后，就可以将U盘拔掉，关机，开机。然后就可以进入系统了。  
 
@@ -50,10 +46,7 @@ PS：安装前须知，Linux的内核是放在EFI分区的，如果需要，在�
 
 ###### Arch Linux安装
 
-前略，首先我们要准备关于ArchLinux的完整镜像  
-
-前往[Arch Linux](https://mirrors.edge.kernel.org/archlinux/iso/latest) 的镜像站  
-下载最新的镜像文件(.iso)  
+前略  
 
 准备好镜像文件后，我们要在VMware/VirtualBox上创建虚拟机  
 创建虚拟机  
@@ -69,7 +62,9 @@ PS：安装前须知，Linux的内核是放在EFI分区的，如果需要，在�
 A. 使用Archinstall脚本（推荐）  
 官方镜像源自带了一个自动化的脚本，使用这个可以有图形化界面像window安装一般的简单的安装Arch Linux，首先在
 
-`archintall`
+```
+archintall
+```
 
 然后图形界面可以代替教程了，不过还有几点需要提到  
 1.Disk configuration:这个是对你给Archlinux分的硬盘空间进行分区，建议选择Desktop-specific配置  
@@ -82,18 +77,10 @@ B.手动安装（不推荐）
 ~~*这是我能做到的最不会误导你的事情了*~~  
 以及反复确保安装时各个目录是否挂载正确  
 
-###### Fedora Workstation 安装
-
-进入Live CD后，直接按照指引安装即可，十分的简洁和方便
-
 #### 物理机安装
 
 ###### Arch Linux安装
 
 建议你直接去[archlinux 简明指南](https://arch.icekylin.online/)，按照步骤来进行，因为我做的再详细也没有[archlinux 简明指南](https://arch.icekylin.online/)详细  
 如果可以，请在虚拟机完整的走完了一遍安装流程后在进行物理机上的安装。  
-~~还有最重要的一点，不要再晚上搞电脑/刷机~~  
-
-###### Fedora Workstation安装
-
-同样进入Live CD环境中，按照指引安装
+~~还有最重要的一点，不要再晚上搞电脑/刷机~~
